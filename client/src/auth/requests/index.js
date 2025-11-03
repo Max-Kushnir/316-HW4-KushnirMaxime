@@ -10,11 +10,30 @@
     @author McKilla Gorilla
 */
 
-import axios from 'axios'
-axios.defaults.withCredentials = true;
-const api = axios.create({
-    baseURL: 'http://localhost:4000/auth',
-})
+const BASE_URL = 'http://localhost:4000/auth';
+
+const request = async (endpoint, options = {}) => {
+    const url = `${BASE_URL}${endpoint}`;
+    const config = {
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        ...options,
+    };
+
+    const response = await fetch(url, config);
+    const data = await response.json();
+
+    if (!response.ok) {
+        const error = new Error('Request failed');
+        error.response = { data, status: response.status };
+        throw error;
+    }
+
+    return { data, status: response.status };
+};
+
 
 // THESE ARE ALL THE REQUESTS WE`LL BE MAKING, ALL REQUESTS HAVE A
 // REQUEST METHOD (like get) AND PATH (like /register). SOME ALSO
@@ -23,21 +42,27 @@ const api = axios.create({
 // WE NEED TO PUT THINGS INTO THE DATABASE OR IF WE HAVE SOME
 // CUSTOM FILTERS FOR QUERIES
 
-export const getLoggedIn = () => api.get(`/loggedIn/`);
+export const getLoggedIn = () => request('/loggedIn/');
 export const loginUser = (email, password) => {
-    return api.post(`/login/`, {
-        email : email,
-        password : password
+    return request('/login/', {
+        method: 'POST',
+        body: JSON.stringify({
+            email: email,
+            password: password
+        })
     })
 }
-export const logoutUser = () => api.get(`/logout/`)
+export const logoutUser = () => request('/logout/')
 export const registerUser = (firstName, lastName, email, password, passwordVerify) => {
-    return api.post(`/register/`, {
-        firstName : firstName,
-        lastName : lastName,
-        email : email,
-        password : password,
-        passwordVerify : passwordVerify
+    return request('/register/', {
+        method: 'POST',
+        body: JSON.stringify({
+            firstName : firstName,
+            lastName : lastName,
+            email : email,
+            password : password,
+            passwordVerify : passwordVerify
+        })
     })
 }
 const apis = {

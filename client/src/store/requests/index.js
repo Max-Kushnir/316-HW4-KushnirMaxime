@@ -10,11 +10,29 @@
     @author McKilla Gorilla
 */
 
-import axios from 'axios'
-axios.defaults.withCredentials = true;
-const api = axios.create({
-    baseURL: 'http://localhost:4000/store',
-})
+const BASE_URL = 'http://localhost:4000/store';
+
+const request = async (endpoint, options = {}) => {
+    const url = `${BASE_URL}${endpoint}`;
+    const config = {
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        ...options,
+    };
+
+    const response = await fetch(url, config);
+    const data = await response.json();
+
+    if (!response.ok) {
+        const error = new Error('Request failed');
+        error.response = { data, status: response.status };
+        throw error;
+    }
+
+    return { data, status: response.status };
+};
 
 // THESE ARE ALL THE REQUESTS WE`LL BE MAKING, ALL REQUESTS HAVE A
 // REQUEST METHOD (like get) AND PATH (like /top5list). SOME ALSO
@@ -23,22 +41,34 @@ const api = axios.create({
 // WE NEED TO PUT THINGS INTO THE DATABASE OR IF WE HAVE SOME
 // CUSTOM FILTERS FOR QUERIES
 export const createPlaylist = (newListName, newSongs, userEmail) => {
-    return api.post(`/playlist/`, {
+    return request('/playlist/', {
         // SPECIFY THE PAYLOAD
-        name: newListName,
-        songs: newSongs,
-        ownerEmail: userEmail
-    })
-}
-export const deletePlaylistById = (id) => api.delete(`/playlist/${id}`)
-export const getPlaylistById = (id) => api.get(`/playlist/${id}`)
-export const getPlaylistPairs = () => api.get(`/playlistpairs/`)
+        method: 'POST',
+        body: JSON.stringify({
+            name: newListName,
+            songs: newSongs,
+            ownerEmail: userEmail
+        })
+    });
+};
+
+export const deletePlaylistById = (id) => {
+    return request(`/playlist/${id}`, {
+        method: 'DELETE'
+    });
+};
+
+export const getPlaylistById = (id) => request(`/playlist/${id}`);
+export const getPlaylistPairs = () => request('/playlistpairs/');
 export const updatePlaylistById = (id, playlist) => {
-    return api.put(`/playlist/${id}`, {
+    return request(`/playlist/${id}`, {
         // SPECIFY THE PAYLOAD
-        playlist : playlist
-    })
-}
+        method: 'PUT',
+        body: JSON.stringify({
+            playlist : playlist
+        })
+    });
+};
 
 const apis = {
     createPlaylist,
