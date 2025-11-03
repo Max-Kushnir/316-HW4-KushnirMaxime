@@ -18,6 +18,17 @@
             "playlists": [
                 "68f526c4ec1ea2ad00a6fae8"
             ]
+        },
+        {
+            "firstName": "Max",
+            "lastName": "Kushnir",
+            "email": "maxime.kushnir@stonybrook.edu",
+            "passwordHash": "$2a$10$WiJFi0gTL0CD83Rl9TES.uME0Fd/poia2hmhQwarm3Oo/ehZhoWfS",
+            "playlists":[
+                "68f528d4ec1ea2ad00a6fb00",
+                "68f5290eec1ea2ad00a6fb08",
+                "68f528d4ec1ea2ad00a6fb10"
+            ]
         }
     ],
     "playlists": [
@@ -208,6 +219,90 @@
                     "year": 1979,
                     "youTubeId": "uEK9oK02D1M"
                 }
+            ]
+        },
+        {
+            "_id": "68f528d4ec1ea2ad00a6fb00",
+            "ownerEmail": "maxime.kushnir@stonybrook.edu",
+            "name": "Old Songs I Like",
+            "songs": [
+                {"title": "Paranoid", "artist": "Black Sabbath", "year": 1970, "youTubeId": "BOTIIw76qiE"},
+                {"title": "Iron Man", "artist": "Black Sabbath", "year": 1970, "youTubeId": "F01UTYg79KY"},
+                {"title": "War Pigs", "artist": "Black Sabbath", "year": 1970, "youTubeId": "bc5Nk1DXyEY"},
+                {"title": "N.I.B.", "artist": "Black Sabbath", "year": 1970, "youTubeId": "NsXEb-NOs88"},
+                {"title": "Black Sabbath", "artist": "Black Sabbath", "year": 1970, "youTubeId": "zBj4HtEWFGY"},
+                {"title": "Children of the Grave", "artist": "Black Sabbath", "year": 1971, "youTubeId": "rR1nZLeQl1A"},
+                {"title": "Sweet Leaf", "artist": "Black Sabbath", "year": 1971, "youTubeId": "8eleGPkE9Gk"},
+                {"title": "Группа крови (Blood Type)", "artist": "KINO", "year": 1988, "youTubeId": "xtxjm7ciwmc"},
+                {"title": "Звезда по имени Солнце (A Star Called Sun)", "artist": "KINO", "year": 1989, "youTubeId": "jQV5VXfKDYc"},
+                {"title": "Пачка сигарет (Pack of Cigarettes)", "artist": "KINO", "year": 1989, "youTubeId": "w7GTLIhNO1g"},
+                {"title": "Кукушка (Cuckoo)", "artist": "KINO", "year": 1990, "youTubeId": "iXk8QXhr7Fk"},
+                {"title": "Перемен (Changes)", "artist": "KINO", "year": 1986, "youTubeId": "Mo9KIpPOeqg"},
+                {"title": "Спокойная ночь (Good Night)", "artist": "KINO", "year": 1988, "youTubeId": "DiDUIfMk7go"},
+                {"title": "Алюминиевые огурцы (Aluminum Cucumbers)", "artist": "KINO", "year": 1982, "youTubeId": "TMZM-NxeXxM"},
+                {"title": "Your Song", "artist": "Elton John", "year": 1970, "youTubeId": "FT3D1Cu6g10"},
+                {"title": "Rocket Man", "artist": "Elton John", "year": 1972, "youTubeId": "2hjSgJyMGaA"},
+                {"title": "Tiny Dancer", "artist": "Elton John", "year": 1971, "youTubeId": "5g4MSYK5d3A"},
+                {"title": "Goodbye Yellow Brick Road", "artist": "Elton John", "year": 1973, "youTubeId": "wy709iNG6i8"},
+                {"title": "Bennie and the Jets", "artist": "Elton John", "year": 1973, "youTubeId": "ZBUW433Porw"},
+                {"title": "Don't Let the Sun Go Down on Me", "artist": "Elton John", "year": 1974, "youTubeId": "TxipVM_0CBA"},
+                {"title": "Candle in the Wind", "artist": "Elton John", "year": 1973, "youTubeId": "MYU3F8uUGiw"}
+            ]
+        },
+        {
+            "_id": "68f5290eec1ea2ad00a6fb08",
+            "ownerEmail": "maxime.kushnir@stonybrook.edu",
+            "name": "My Favorite Songs",
+            "songs": [
+                {"title": "Банька (Sauna)", "artist": "Guf", "year": 2025, "youTubeId": "hmC0nBz3T1k"},
+                {"title": "Айс Беби (Ice Baby)", "artist": "Guf", "year": 2011, "youTubeId": "UQBKbbxlCuk"},
+                {"title": "Качели (Swings)", "artist": "Guf", "year": 2017, "youTubeId": "UnPkmEAehwU"},
+                {"title": "Письмо домой (Letter Home)", "artist": "Guf", "year": 2015, "youTubeId": "y8VEMLic0lY"},
+                {"title": "Для Нее", "artist": "Guf", "year": 2011, "youTubeId": "2c6swYxDmTY"},
+                {"title": "52 Bars", "artist": "Karan Aujla", "year": 2023, "youTubeId": "4DfVxVeqk2o"},
+                {"title": "Admirin You", "artist": "Karan Aujla", "year": 2023, "youTubeId": "k85UB5b6pJU"},
+                {"title": "Mexico", "artist": "Karan Aujla", "year": 2021, "youTubeId": "5d3EuRN43bU"},
+                {"title": "Softly", "artist": "Karan Aujla", "year": 2022, "youTubeId": "Chif1XK2e8"},
+                {"title": "Tauba Tauba", "artist": "Karan Aujla", "year": 2024, "youTubeId": "LK7-_dgAVQE"},
+                {"title": "Режиссёр (Director)", "artist": "Gradusy", "year": 2007, "youTubeId": "V1MK9244sE8"},
+                {"title": "Голая (Naked)", "artist": "Gradusy", "year": 2009, "youTubeId": "fou72UMdG0k"},
+                {"title": "Кто Ты? (who are you?)", "artist": "Gradusy", "year": 2006, "youTubeId": "lxcNcYv7Uy4"},
+                {"title": "Хочется (I want to)", "artist": "Gradusy", "year": 2015, "youTubeId": "Puy6whV8nc0"},
+                {"title": "Freeman", "artist": "MiyaGi", "year": 2019, "youTubeId": "xZEVGJszvo0"},
+                {"title": "I Got Love", "artist": "MiyaGi", "year": 2019, "youTubeId": "nidQCt_HEsY"},
+                {"title": "Minor", "artist": "MiyaGi", "year": 2020, "youTubeId": "4EfM6rPmxow"},
+                {"title": "Kosandra", "artist": "MiyaGi", "year": 2019, "youTubeId": "x1ZtIVuHph0"},
+                {"title": "Brooklyn", "artist": "MiyaGi", "year": 2016, "youTubeId": "mhwmB95EX1A"},
+                {"title": "Captain", "artist": "MiyaGi", "year": 2016, "youTubeId": "i0Oe1KQBwQg"},
+                {"title": "Samurai", "artist": "MiyaGi", "year": 2017, "youTubeId": "_GqTvdieBv8"}
+            ]
+        },
+        {
+            "_id": "68f528d4ec1ea2ad00a6fb10",
+            "ownerEmail": "maxime.kushnir@stonybrook.edu",
+            "name": "Interesting and Unusual Songs",
+            "songs": [
+                {"title": "Моя игра (My Game)", "artist": "Basta", "year": 2006, "youTubeId": "cQsr3AbuNkw"},
+                {"title": "Сансара (Samsara)", "artist": "Basta", "year": 2016, "youTubeId": "aiCL0-U9WxI"},
+                {"title": "Выпускной (Graduation)", "artist": "Basta", "year": 2010, "youTubeId": "t1-yL-xvklc"},
+                {"title": "Урбан (Urban)", "artist": "Basta", "year": 2012, "youTubeId": "spuDLI6soN8"},
+                {"title": "Мама (Mom)", "artist": "Basta", "year": 2011, "youTubeId": "_-pIVd4lGMw"},
+                {"title": "Осень (Autumn)", "artist": "Basta", "year": 2010, "youTubeId": "nMzKq_ExN5w"},
+                {"title": "Цветочек (Flower)", "artist": "KRBK", "year": 2024, "youTubeId": "fBj8Lj49sC4"},
+                {"title": "Крепче (Tighter)", "artist": "KRBK", "year": 2022, "youTubeId": "Fn_laAYEm3U"},
+                {"title": "Excuses", "artist": "AP Dhillon", "year": 2020, "youTubeId": "vX2cDW8LUWk"},
+                {"title": "Brown Munde", "artist": "AP Dhillon", "year": 2020, "youTubeId": "VNs_cCtdbPc"},
+                {"title": "Insane", "artist": "AP Dhillon", "year": 2021, "youTubeId": "cqP8I5aaud8"},
+                {"title": "Summer High", "artist": "AP Dhillon", "year": 2021, "youTubeId": "nqUN530Rgtw"},
+                {"title": "With You", "artist": "AP Dhillon", "year": 2022, "youTubeId": "mZQH8CPQ-wo"},
+                {"title": "Do You Know", "artist": "Diljit Dosanjh", "year": 2016, "youTubeId": "P-DhwN87JDY"},
+                {"title": "5 Taara", "artist": "Diljit Dosanjh", "year": 2015, "youTubeId": "MsTW5cyWKj4"},
+                {"title": "Laembadgini", "artist": "Diljit Dosanjh", "year": 2016, "youTubeId": "15Sjjl_24x0"},
+                {"title": "Proper Patola", "artist": "Diljit Dosanjh", "year": 2013, "youTubeId": "YmXJp4RtBCM"},
+                {"title": "Patiala Peg", "artist": "Diljit Dosanjh", "year": 2014, "youTubeId": "slUoxZedJwE"},
+                {"title": "Ikk Kudi", "artist": "Diljit Dosanjh", "year": 2016, "youTubeId": "ZbX_nlzv7uU"},
+                {"title": "Clash", "artist": "Diljit Dosanjh", "year": 2017, "youTubeId": "KX06ksuS6Xo"},
+                {"title": "Veer Vaar", "artist": "Diljit Dosanjh", "year": 2021, "youTubeId": "_VLpkuU7pNg"}
             ]
         }
     ]
