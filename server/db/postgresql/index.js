@@ -49,9 +49,8 @@ class PostgreSQLManager extends DatabaseManager {
         return await this.User.create(userData);
     }
 
+    // doesn't really exist in postgres but I keep it for interface conistency
     async addPlaylistToUser(userId, playlistId) {
-        // In PostgreSQL, the relationship is managed via foreign key in Playlist table
-        // So this is a no-op, but we return the user for consistency
         const user = await this.User.findByPk(userId);
         return user;
     }

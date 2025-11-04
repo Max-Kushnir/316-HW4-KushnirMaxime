@@ -3,7 +3,7 @@ dotenv.config();
 
 /**
  * Database Manager Factory
- * Loads the appropriate database implementation based on DB_TYPE environment variable
+ * Loads the proper database implementation based on environment variable
  */
 function getDatabaseManager() {
     const dbType = process.env.DB_TYPE || 'mongodb';
