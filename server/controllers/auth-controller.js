@@ -1,5 +1,5 @@
 const auth = require('../auth')
-const User = require('../models/user-model')
+const dbManager = require('../db')
 const bcrypt = require('bcryptjs')
 
 getLoggedIn = async (req, res) => {
@@ -13,7 +13,7 @@ getLoggedIn = async (req, res) => {
             })
         }
 
-        const loggedInUser = await User.findOne({ _id: userId });
+        const loggedInUser = await dbManager.findUserById(userId);
         console.log("loggedInUser: " + loggedInUser);
 
         return res.status(200).json({
@@ -41,7 +41,7 @@ loginUser = async (req, res) => {
                 .json({ errorMessage: "Please enter all required fields." });
         }
 
-        const existingUser = await User.findOne({ email: email });
+        const existingUser = await dbManager.findUserByEmail(email);
         console.log("existingUser: " + existingUser);
         if (!existingUser) {
             return res
@@ -63,7 +63,8 @@ loginUser = async (req, res) => {
         }
 
         // LOGIN THE USER
-        const token = auth.signToken(existingUser._id);
+        const userId = dbManager.getUserId(existingUser);
+        const token = auth.signToken(userId);
         console.log(token);
 
         res.cookie("token", token, {
@@ -74,8 +75,8 @@ loginUser = async (req, res) => {
             success: true,
             user: {
                 firstName: existingUser.firstName,
-                lastName: existingUser.lastName,  
-                email: existingUser.email              
+                lastName: existingUser.lastName,
+                email: existingUser.email
             }
         })
 
@@ -121,7 +122,7 @@ registerUser = async (req, res) => {
                 })
         }
         console.log("password and password verify match");
-        const existingUser = await User.findOne({ email: email });
+        const existingUser = await dbManager.findUserByEmail(email);
         console.log("existingUser: " + existingUser);
         if (existingUser) {
             return res
@@ -137,12 +138,12 @@ registerUser = async (req, res) => {
         const passwordHash = await bcrypt.hash(password, salt);
         console.log("passwordHash: " + passwordHash);
 
-        const newUser = new User({firstName, lastName, email, passwordHash});
-        const savedUser = await newUser.save();
-        console.log("new user saved: " + savedUser._id);
+        const savedUser = await dbManager.createUser({firstName, lastName, email, passwordHash});
+        const userId = dbManager.getUserId(savedUser);
+        console.log("new user saved: " + userId);
 
         // LOGIN THE USER
-        const token = auth.signToken(savedUser._id);
+        const token = auth.signToken(userId);
         console.log("token:" + token);
 
         await res.cookie("token", token, {
@@ -153,8 +154,8 @@ registerUser = async (req, res) => {
             success: true,
             user: {
                 firstName: savedUser.firstName,
-                lastName: savedUser.lastName,  
-                email: savedUser.email              
+                lastName: savedUser.lastName,
+                email: savedUser.email
             }
         })
 
