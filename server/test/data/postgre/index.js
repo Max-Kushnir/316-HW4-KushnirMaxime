@@ -18,14 +18,57 @@ async function fillTable(model, tableName, data) {
 }
 
 async function resetPostgres() {
-    const { Playlist, User } = require('../../../models');
+    const { Playlist, User, Song } = require('../../../models');
     const testData = require("../example-db-data.json");
 
     console.log("Resetting the Postgres DB");
+
+    // Clear tables in correct order (due to foreign keys)
+    await clearTable(Song, "Song");
     await clearTable(Playlist, "Playlist");
     await clearTable(User, "User");
-    await fillTable(User, "User", testData.users);
-    await fillTable(Playlist, "Playlist", testData.playlists);
+
+    // Fill users (without playlist references for PostgreSQL)
+    for (let i = 0; i < testData.users.length; i++) {
+        const userData = {
+            firstName: testData.users[i].firstName,
+            lastName: testData.users[i].lastName,
+            email: testData.users[i].email,
+            passwordHash: testData.users[i].passwordHash
+        };
+        await User.create(userData);
+    }
+    console.log("User filled");
+
+    // Fill playlists and their songs
+    for (let i = 0; i < testData.playlists.length; i++) {
+        const playlistData = testData.playlists[i];
+
+        // Find the user by email to get their ID
+        const user = await User.findOne({ where: { email: playlistData.ownerEmail } });
+
+        // Create playlist
+        const playlist = await Playlist.create({
+            name: playlistData.name,
+            ownerEmail: playlistData.ownerEmail,
+            userId: user.id
+        });
+
+        // Create songs for this playlist
+        if (playlistData.songs && playlistData.songs.length > 0) {
+            for (let j = 0; j < playlistData.songs.length; j++) {
+                await Song.create({
+                    title: playlistData.songs[j].title,
+                    artist: playlistData.songs[j].artist,
+                    year: playlistData.songs[j].year,
+                    youTubeId: playlistData.songs[j].youTubeId,
+                    playlistId: playlist.id
+                });
+            }
+        }
+    }
+    console.log("Playlist filled");
+    console.log("Song filled");
 }
 
 const { sequelize } = require('../../../models');

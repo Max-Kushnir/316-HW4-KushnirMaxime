@@ -77,14 +77,14 @@ describe('User Operations Tests', () => {
         expect(foundUser).toBeDefined();
         expect(foundUser.firstName).toBe('Test');
         expect(foundUser.lastName).toBe('User');
-        expect(dbManager.getUserId(foundUser)).toBe(testUserId);
+        expect(dbManager.getUserId(foundUser).toString()).toBe(testUserId.toString());
     });
 
     test('Test #5) Get User ID helper method', async () => {
         const user = await dbManager.findUserById(testUserId);
         const userId = dbManager.getUserId(user);
 
-        expect(userId).toBe(testUserId);
+        expect(userId.toString()).toBe(testUserId.toString());
     });
 });
 
