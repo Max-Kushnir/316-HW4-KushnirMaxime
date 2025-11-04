@@ -18,17 +18,29 @@ app.use(cors({
 app.use(express.json())
 app.use(cookieParser())
 
-// SETUP OUR OWN ROUTERS AS MIDDLEWARE
-const authRouter = require('./routes/auth-router')
-app.use('/auth', authRouter)
-const storeRouter = require('./routes/store-router')
-app.use('/store', storeRouter)
+// INITIALIZE DATABASE MANAGER
+const dbManager = require('./db')
 
-// INITIALIZE OUR DATABASE OBJECT
-const db = require('./db')
-db.on('error', console.error.bind(console, 'Database connection error:'))
+// Make dbManager available to routes via app.locals
+app.locals.dbManager = dbManager
 
-// PUT THE SERVER IN LISTENING MODE
-app.listen(PORT, () => console.log(`Playlister Server running on port ${PORT}`))
+// Initialize database connection
+dbManager.initialize()
+    .then(() => {
+        console.log('Database initialized successfully')
+
+        // SETUP OUR OWN ROUTERS AS MIDDLEWARE
+        const authRouter = require('./routes/auth-router')
+        app.use('/auth', authRouter)
+        const storeRouter = require('./routes/store-router')
+        app.use('/store', storeRouter)
+
+        // PUT THE SERVER IN LISTENING MODE
+        app.listen(PORT, () => console.log(`Playlister Server running on port ${PORT}`))
+    })
+    .catch(err => {
+        console.error('Failed to initialize database:', err)
+        process.exit(1)
+    })
 
 
