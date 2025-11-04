@@ -1,15 +1,22 @@
-
-const mongoose = require('mongoose')
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
 dotenv.config();
 
-mongoose
-    .connect(process.env.DB_CONNECT, { useNewUrlParser: true })
-    .catch(e => {
-        console.error('Connection error', e.message)
-    })
+/**
+ * Database Manager Factory
+ * Loads the appropriate database implementation based on DB_TYPE environment variable
+ */
+function getDatabaseManager() {
+    const dbType = process.env.DB_TYPE || 'mongodb';
 
-const db = mongoose.connection
+    if (dbType === 'mongodb') {
+        const MongoDBManager = require('./mongodb');
+        return new MongoDBManager();
+    } else if (dbType === 'postgresql') {
+        const PostgreSQLManager = require('./postgresql');
+        return new PostgreSQLManager();
+    } else {
+        throw new Error(`Unsupported database type: ${dbType}`);
+    }
+}
 
-module.exports = db
-
+module.exports = getDatabaseManager();
