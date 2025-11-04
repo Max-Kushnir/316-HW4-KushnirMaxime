@@ -2,7 +2,7 @@ const dotenv = require('dotenv').config({ path: __dirname + '/../../../.env' });
 
 async function clearTable(model, tableName) {
     try {
-        await model.destroy({ where: {}, truncate: true });
+        await model.destroy({ where: {}, truncate: true, cascade: true });
         console.log(tableName + " cleared");
     }
     catch (err) {
